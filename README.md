@@ -10,6 +10,6 @@ On verra par la suite qui push quoi dans master !
 
 ## Links
 
-http://debug-pro.com/epita/prog/s3/
-http://debug-pro.com/epita/prog/s3/project/project_s3_fr.pdf
-http://neuralnetworksanddeeplearning.com/
+- Site de prog : http://debug-pro.com/epita/prog/s3/
+- Cahier des charges : http://debug-pro.com/epita/prog/s3/project/project_s3_fr.pdf
+- Lien donné dans le cahier des charges : http://neuralnetworksanddeeplearning.com/
