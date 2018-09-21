@@ -7,3 +7,9 @@ Vous avez tout ce qu'il y a faire dans la partie "issues", choisissez une tâche
 "A FAIRE SF" = à faire pour la soutenance finale
 
 On verra par la suite qui push quoi dans master !
+
+## Links
+
+http://debug-pro.com/epita/prog/s3/
+http://debug-pro.com/epita/prog/s3/project/project_s3_fr.pdf
+http://neuralnetworksanddeeplearning.com/
