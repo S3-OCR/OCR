@@ -1,6 +1,13 @@
 #ifndef TOOLS_H_
 #define TOOLS_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+
+//========================================//
+//	     Matrices Functions           //
+//========================================//
+
 // Matrix object declaration
 struct Matrix
 {
@@ -12,14 +19,23 @@ struct Matrix
         double *mat;
 };
 
+// Function to change a value in a matrix
 void ChangeMatrix(struct Matrix matrix, int x, int y, float val);
 
+// Function to navigate in the matrix; return matrix(x, y)
 double NavMatrix(struct Matrix matrix, int x, int y);
 
 void InitMatrix();
 
+// Create a matrix; return the matrix
 struct Matrix CreateMatrix(int rows, int colums);
 
+// Print the matrix
 void PrintMatrix(struct Matrix matrix);
+
+//========================================//
+//		 YET TO COME		  //
+//========================================//
+
 
 #endif

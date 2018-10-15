@@ -1,10 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "Tools.h"
 
 int CheckCoord(struct Matrix matrix, int x, int y);
 
-// Create a matrix
+//========================================//
+//		Start Matrices		  //
+//========================================//
+
+// Create a matrix; return the matrix
 struct Matrix CreateMatrix(int rows, int columns)
 {
 	struct Matrix matrix;
@@ -24,7 +26,7 @@ int CheckCoord(struct Matrix matrix, int x, int y)
 }
 
 
-// Function to navigate in the matrix
+// Function to navigate in the matrix; return matrix(x, y)
 double NavMatrix(struct Matrix matrix, int x, int y) 
 {
 	if (!CheckCoord(matrix, x, y))
@@ -65,3 +67,7 @@ void InitMatrix(struct Matrix matrix)
                 }
         }    
 }
+
+//========================================//
+//              End Matrices              //
+//========================================//
