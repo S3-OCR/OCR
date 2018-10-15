@@ -1,27 +1,10 @@
-#include "Tools.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Tools.h"
 
-struct Matrix CreateMatrix(int rows, int columns);
-double NavMatrix(struct Matrix matrix, int x, int y);
-void ChangeMatrix(struct Matrix matrix, int x, int y, float val);
-void PrintMatrix(struct Matrix matrix);
-void PrintTest();
-void InitMatrix();
 int CheckCoord(struct Matrix matrix, int x, int y);
 
-//  Matrix object
-struct Matrix
-{
-        // Size of the matrix
-        int rows;
-        int columns;
-
-        // Pointer to the matrix
-        double *mat;
-};
-
-// Function to create a matrix
+// Create a matrix
 struct Matrix CreateMatrix(int rows, int columns)
 {
 	struct Matrix matrix;
@@ -29,12 +12,12 @@ struct Matrix CreateMatrix(int rows, int columns)
 	matrix.rows = rows;
 	matrix.columns = columns;
 
-	//double T[sizeof(double)*columns*rows];
 	matrix.mat = malloc(sizeof(double)*columns*rows);
 
 	return matrix;
 }
 
+// Testing if given coordinates are correct
 int CheckCoord(struct Matrix matrix, int x, int y)
 {
 	return (x < matrix.rows &&  y < matrix.columns); 
@@ -53,9 +36,12 @@ double NavMatrix(struct Matrix matrix, int x, int y)
 // Function to change a value in a matrix
 void ChangeMatrix(struct Matrix matrix, int x, int y, float val)
 {
+	if (!CheckCoord(matrix, x, y))
+                printf("Error in coordinates");
         *(matrix.mat + x * matrix.columns + y) = val;
 }
 
+// Print the matrix
 void PrintMatrix(struct Matrix matrix)
 {
 	for (int i = 0; i < matrix.rows; i++)
@@ -68,6 +54,7 @@ void PrintMatrix(struct Matrix matrix)
 	}
 }
 
+// Initialize the matrix with 0s
 void InitMatrix(struct Matrix matrix)
 {
 	 for (int i = 0; i < matrix.rows; i++)
@@ -78,14 +65,3 @@ void InitMatrix(struct Matrix matrix)
                 }
         }    
 }
-
-void PrintTest()
-{
-	struct Matrix mat1 = CreateMatrix(10,6);
-        InitMatrix(mat1);
-	ChangeMatrix(mat1, 2, 0, 7);
-	ChangeMatrix(mat1, 0, 0, 2);
-	ChangeMatrix(mat1, 1, 4, 4);	
-	PrintMatrix(mat1);
-}
-
