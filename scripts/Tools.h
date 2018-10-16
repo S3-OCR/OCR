@@ -25,7 +25,7 @@ void ChangeMatrix(struct Matrix matrix, int x, int y, float val);
 // Function to navigate in the matrix; return matrix(x, y)
 double NavMatrix(struct Matrix matrix, int x, int y);
 
-void InitMatrix();
+void InitMatrix(struct Matrix matrix);
 
 // Create a matrix; return the matrix
 struct Matrix CreateMatrix(int rows, int colums);
@@ -36,6 +36,6 @@ void PrintMatrix(struct Matrix matrix);
 //========================================//
 //		 YET TO COME		  //
 //========================================//
-
+double Random();
 
 #endif
