@@ -51,28 +51,28 @@ struct NeuralNetwork InitializeNetwork()
 	// First Input		
 	ChangeMatrix(net.matInputValues, 0, 0, 0); // Goes
 	ChangeMatrix(net.matInputValues, 1, 0, 0); // By
-	ChangeMatrix(net.matInputValues, 2, 0, 1); // Pairs
+	ChangeMatrix(net.matInputValues, 2, 0, 0); // Pairs
 	ChangeMatrix(net.matInputValues, 3, 0, 1); // 
 	// Second Input				   // Exemples:
-	ChangeMatrix(net.matInputValues, 4, 0, 0); // 
-	ChangeMatrix(net.matInputValues, 5, 0, 1); // First[0].Second[0]=[0][4]=00
-	ChangeMatrix(net.matInputValues, 6, 0, 0); // First[1].Second[1]=[1][5]=01
+	ChangeMatrix(net.matInputValues, 4, 0, 1); // 
+	ChangeMatrix(net.matInputValues, 5, 0, 0); // First[0].Second[0]=[0][4]=00
+	ChangeMatrix(net.matInputValues, 6, 0, 1); // First[1].Second[1]=[1][5]=01
 	ChangeMatrix(net.matInputValues, 7, 0, 1); // First[2].Second[2]=[2][6]=10
 	// It's just to make it easier to mamage Error matrix value changing 
 		
 // Initializing error matrix
-	net.matErrors = CreateMatrix(4, 1);
+	net.matErrors = CreateMatrix(8, 1);
 	ChangeMatrix(net.matErrors, 0, 0, 1);
-	ChangeMatrix(net.matErrors, 1, 0, 1);
 	ChangeMatrix(net.matErrors, 2, 0, 1);
-	ChangeMatrix(net.matErrors, 3, 0, 1);
+	ChangeMatrix(net.matErrors, 4, 0, 1);
+	ChangeMatrix(net.matErrors, 6, 0, 1);
 
 // Initializing the aim matrix
-	net.matAim = CreateMatrix(4, 1);
+	net.matAim = CreateMatrix(8, 1);
 	ChangeMatrix(net.matAim, 0, 0, 0);
-	ChangeMatrix(net.matAim, 1, 0, 1);
 	ChangeMatrix(net.matAim, 2, 0, 1);
-        ChangeMatrix(net.matAim, 3, 0, 0);
+	ChangeMatrix(net.matAim, 4, 0, 1);
+        ChangeMatrix(net.matAim, 6, 0, 0);
 
 // Matrices of weights, in first layer rows are hidden neurons and cloums are imput
 // neurons, for example, [0;0] would be the weight of the connection between the first
@@ -84,7 +84,7 @@ struct NeuralNetwork InitializeNetwork()
 	// Matrix of weights between hidden layer and output layer
 	net.matWeightsHO = CreateMatrix(net.nbOutputs, net.nbHidden);
 	// Matrix of the output of hidden layer after sum
-	net.matOutputH = CreateMatrix(net.nbOutputs, net.nbHidden); 
+	net.matOutputH = CreateMatrix(net.nbHidden, 1); 
 	// Matrix of the biases of hidden layer
 	net.matBiasH = CreateMatrix(net.nbHidden, 1);
 	// Matrix of the sum of weights * inputs
@@ -113,7 +113,7 @@ void ForwardPass(struct NeuralNetwork net, int inpValues, int epoch)
 		for (int i = 0; i < net.nbInputs; i++)
 		{
 			SumIH += NavMatrix(net.matWeightsIH, h, i) * 
-				NavMatrix(net.matInputValues, inpValues + 4 + i, 0);
+				NavMatrix(net.matInputValues, inpValues + i, 0);
 		}
 		SumIH += NavMatrix(net.matBiasH, h, 0);
 		ChangeMatrix(net.matSumIH, h, 0, SumIH);
@@ -123,21 +123,19 @@ void ForwardPass(struct NeuralNetwork net, int inpValues, int epoch)
 	double SumHO = 0;
         for (int i = 0; i < net.nbHidden; i++)
         {
-        	SumHO += NavMatrix(net.matWeightsIH, 0, i) *
-                	 NavMatrix(net.matInputValues, inpValues + 4 + i, 0);
+        	SumHO += NavMatrix(net.matWeightsHO, 0, i) *
+                	 NavMatrix(net.matOutputH, i, 0);
         }
         SumHO += net.BiasO;
         net.SumHOutputs = SumHO;
+	printf("Sum = %f   ", SumHO);
         net.FinalOutput = Sigmoid(SumHO);
-
+	
+	printf("Final Output = %f\n", net.FinalOutput);
 	if (epoch % 100 == 0)
 		ChangeMatrix(net.matErrors, inpValues, 0, net.FinalOutput
 			       		- NavMatrix(net.matAim, inpValues, 0));
 }
-
-
-
-
 
 void TestForNeuralNetwork()
 {
@@ -154,7 +152,16 @@ void TestForNeuralNetwork()
 	PrintMatrix(nettest.matBiasH);
 	printf("Bias O = %f\n", nettest.BiasO);
 	printf("Error Rates\n");
-	PrintMatrix(nettest.matErrors);
+	
+	for (int i = 0; i < 7; i += 2)
+	{
+		ForwardPass(nettest, i, 100);
+	}
+	
+	printf("%f\n", NavMatrix(nettest.matErrors, 0, 0));
+	printf("%f\n", NavMatrix(nettest.matErrors, 2, 0));
+        printf("%f\n", NavMatrix(nettest.matErrors, 4, 0));
+        printf("%f\n", NavMatrix(nettest.matErrors, 6, 0));
 }
 
 
