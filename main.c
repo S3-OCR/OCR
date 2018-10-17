@@ -1,16 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "image.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <err.h>
+# include "Initialization/image.h"
 
 int main(int argc, char** argv)
 {
+	SDL_Surface* img;
+	
+	if  (argc > 0)
+	{ 
+		img = load_image(argv[1]); //argv[1] = path of bmp
+		display_img(img);
+		wait_for_keypressed();
+		SDL_FreeSurface(img);
 
-	if  (argc > 1)
-	{
-		image_load(argv[1]); //argv[1] = path of bmp
 		return 0;
 	}			
 	else
