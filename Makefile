@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c99 -O2 `pkg-config --cflags sdl2`
 LDFLAGS =
 LDLIBS = -lm `pkg-config --libs sdl2` -lSDL2 -lSDL2_image
 
-SRC = main.c Initialization/image.c
+SRC = main.c Initialization/image.c Initialization/Binarize.c Initialization/pixel_op.c
 OBJ = ${SRC:.c=.o}
 DEP = ${SRC:.c=.d}
 

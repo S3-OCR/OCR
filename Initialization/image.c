@@ -40,7 +40,11 @@ void wait_for_keypressed()
 
     	// Create window
     	SDL_Window* fenetre;
-	fenetre = SDL_CreateWindow("OCR" , SDL_WINDOWPOS_CENTERED , SDL_WINDOWPOS_CENTERED , 1000 , 600 , SDL_WINDOW_RESIZABLE);
+	
+	int w = image -> w; // width of the bmp
+	int h = image -> h; // height of the bmp
+
+	fenetre = SDL_CreateWindow("OCR" , SDL_WINDOWPOS_CENTERED , SDL_WINDOWPOS_CENTERED , w , h , SDL_WINDOW_RESIZABLE);
     	
 	if(fenetre == NULL) // if problem return error
 	{
@@ -51,10 +55,7 @@ void wait_for_keypressed()
     	SDL_BlitSurface(image, NULL, SDL_GetWindowSurface(fenetre),0);
     	SDL_UpdateWindowSurface(fenetre);
 
-	//wait_for_keypressed(); // wait for a key pressed before leaving
 
-	//SDL_FreeSurface(image); // free memory
-	
 	return fenetre;
 }
 

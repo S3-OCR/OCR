@@ -1,15 +1,25 @@
 # include "Initialization/image.h"
+# include "Initialization/Binarize.h"
 
 int main(int argc, char** argv)
 {
-	SDL_Surface* img;
-	
-	if  (argc > 0)
+	SDL_Surface* img; // the initial bmp
+	SDL_Surface* BW_img; // the white and black colored bmp
+	SDL_Window* screen;
+
+	if  (argc > 0) // at least must have one minimum argument 
 	{ 
 		img = load_image(argv[1]); //argv[1] = path of bmp
-		display_img(img);
+		screen = display_img(img);
 		wait_for_keypressed();
-		SDL_FreeSurface(img);
+
+		SDL_BlitSurface(BW_img, NULL, SDL_GetWindowSurface(screen),0);
+    		SDL_UpdateWindowSurface(screen);
+		BW_img = Binarize(img);
+
+		display_img(BW_img);
+		wait_for_keypressed();
+                SDL_FreeSurface(BW_img);
 
 		return 0;
 	}			
