@@ -30,7 +30,7 @@ int CheckCoord(struct Matrix matrix, int x, int y)
 double NavMatrix(struct Matrix matrix, int x, int y) 
 {
 	if (!CheckCoord(matrix, x, y))
-		printf("=====================\nError in coordinates\n====================\n");
+		printf("====================\nError in coordinates\n====================\n");
 	int index = x * matrix.columns + y;	
 	return *(matrix.mat + index);
 }
@@ -39,7 +39,7 @@ double NavMatrix(struct Matrix matrix, int x, int y)
 void ChangeMatrix(struct Matrix matrix, int x, int y, float val)
 {
 	if (!CheckCoord(matrix, x, y))
-                printf("=====================\nError in coordinates\n====================\n");
+                printf("====================\nError in coordinates\n====================\n");
         *(matrix.mat + x * matrix.columns + y) = val;
 }
 
@@ -59,7 +59,7 @@ void PrintMatrix(struct Matrix matrix)
 // Initialize the matrix with 0s
 void InitMatrix(struct Matrix matrix)
 {
-	 for (int i = 0; i < matrix.rows; i++)
+	for (int i = 0; i < matrix.rows; i++)
         {
                 for(int j = 0; j < matrix.columns; j++)
                 {
@@ -68,6 +68,17 @@ void InitMatrix(struct Matrix matrix)
         }    
 }
 
+void InitMatrixZero(struct Matrix matrix)
+{
+	for (int i = 0; i < matrix.rows; i++)
+        {
+                for(int j = 0; j < matrix.columns; j++)
+                {
+                        ChangeMatrix(matrix, i, j, 0);
+                }
+        }
+
+}
 //========================================//
 //              End Matrices              //
 //========================================/

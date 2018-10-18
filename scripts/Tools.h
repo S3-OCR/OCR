@@ -27,6 +27,7 @@ double NavMatrix(struct Matrix matrix, int x, int y);
 
 void InitMatrix(struct Matrix matrix);
 
+void InitMatrixZero(struct Matrix matrix);
 // Create a matrix; return the matrix
 struct Matrix CreateMatrix(int rows, int colums);
 
