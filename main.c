@@ -1,6 +1,7 @@
 # include "Initialization/image.h"
 # include "Initialization/Binarize.h"
 # include "scripts/NeuralNetwork_XOR.h"
+# include <string.h>
 
 int main(int argc, char** argv)
 {
