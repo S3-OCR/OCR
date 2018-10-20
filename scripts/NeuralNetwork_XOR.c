@@ -1,4 +1,3 @@
-#include "Tools.h"
 #include "NeuralNetwork_XOR.h"
 
 struct NeuralNetwork
