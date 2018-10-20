@@ -12,10 +12,10 @@ int main(int argc, char** argv)
 	{ 
 		if(argc > 1)
 		{
-			if(argv[1] == "display" && argv[2] == "xor")
+			if(strcmp(argv[1], "display") && strcmp(argv[2], "xor"))
 				TestForNeuralNetwork();
 			else
-				return 0
+				return 0;
 		}
 		else
 		{
