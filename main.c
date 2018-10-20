@@ -1,5 +1,6 @@
 # include "Initialization/image.h"
 # include "Initialization/Binarize.h"
+# include "scripts/NeuralNetwork_XOR.h"
 
 int main(int argc, char** argv)
 {
@@ -9,17 +10,27 @@ int main(int argc, char** argv)
 
 	if  (argc > 0) // at least must have one minimum argument 
 	{ 
-		img = load_image(argv[1]); //argv[1] = path of bmp
-		screen = display_img(img);
-		wait_for_keypressed();
+		if(argc > 1)
+		{
+			if(argv[1] == "display" && argv[2] == "xor")
+				TestForNeuralNetwork();
+			else
+				return 0
+		}
+		else
+		{
+			img = load_image(argv[1]); //argv[1] = path of bmp
+			screen = display_img(img);
+			wait_for_keypressed();
 
-		SDL_BlitSurface(BW_img, NULL, SDL_GetWindowSurface(screen),0);
-    		SDL_UpdateWindowSurface(screen);
-		BW_img = Binarize(img);
+			SDL_BlitSurface(BW_img, NULL, SDL_GetWindowSurface(screen),0);
+    			SDL_UpdateWindowSurface(screen);
+			BW_img = Binarize(img);
 
-		display_img(BW_img);
-		wait_for_keypressed();
-                SDL_FreeSurface(BW_img);
+			display_img(BW_img);
+			wait_for_keypressed();
+                	SDL_FreeSurface(BW_img);
+		}
 
 		return 0;
 	}			

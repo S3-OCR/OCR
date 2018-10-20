@@ -37,6 +37,7 @@ void PrintMatrix(struct Matrix matrix);
 //========================================//
 //		 YET TO COME		  //
 //========================================//
+
 double Random();
 
 #endif

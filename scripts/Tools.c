@@ -27,11 +27,11 @@ int CheckCoord(struct Matrix matrix, int x, int y)
 
 
 // Function to navigate in the matrix; return matrix(x, y)
-double NavMatrix(struct Matrix matrix, int x, int y) 
+double NavMatrix(struct Matrix matrix, int x, int y)
 {
 	if (!CheckCoord(matrix, x, y))
 		printf("====================\nError in coordinates\n====================\n");
-	int index = x * matrix.columns + y;	
+	int index = x * matrix.columns + y;
 	return *(matrix.mat + index);
 }
 
@@ -56,7 +56,7 @@ void PrintMatrix(struct Matrix matrix)
 	}
 }
 
-// Initialize the matrix with 0s
+// Initialize the matrix with zeros
 void InitMatrix(struct Matrix matrix)
 {
 	for (int i = 0; i < matrix.rows; i++)
@@ -81,7 +81,7 @@ void InitMatrixZero(struct Matrix matrix)
 }
 //========================================//
 //              End Matrices              //
-//========================================/
+//========================================//
 
 double Random()
 {

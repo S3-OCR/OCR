@@ -6,6 +6,4 @@
 void TestForNeuralNetwork();
 
 
-
-
 #endif
