@@ -5,8 +5,8 @@
 
 SDL_Surface* Binarize(SDL_Surface* img)
 {
-	int w = img -> w; // the width of img
-	int h = img -> h; // the height of img
+	int w = img -> w;// the width of img
+	int h = img -> h;// the height of img
 
 	for (int x = 0; x < w; x++)
 	{

@@ -1,12 +1,13 @@
 #include <err.h>
 #include "pixel_op.h"
 
-static inline
-Uint8* pixel_ref(SDL_Surface *surf, unsigned x, unsigned y)
+
+static inline Uint8* pixel_ref(SDL_Surface *surf, unsigned x, unsigned y)
 {
     int bpp = surf->format->BytesPerPixel;
     return (Uint8*)surf->pixels + y * surf->pitch + x * bpp;
 }
+
 
 // get pixel in bmp thanks to its coordinates x = width and y = height
 Uint32 get_pixel(SDL_Surface *img, unsigned x, unsigned y)
@@ -33,6 +34,7 @@ Uint32 get_pixel(SDL_Surface *img, unsigned x, unsigned y)
 
     return 0;
 }
+
 
 void put_pixel(SDL_Surface *img, unsigned x, unsigned y, Uint32 pixel)
 {
@@ -68,12 +70,4 @@ void put_pixel(SDL_Surface *img, unsigned x, unsigned y, Uint32 pixel)
             break;
     }
 }
-
-/*void update_surface(SDL_Surface* screen, SDL_Surface* image)
-{
-    if (SDL_BlitSurface(image, NULL, screen, NULL) < 0)
-        warnx("BlitSurface error: %s\n", SDL_GetError());
-
-    SDL_UpdateTexture(screen, 0, 0, image->w, image->h);
-}*/
 

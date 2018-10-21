@@ -6,8 +6,6 @@ Vous avez tout ce qu'il y a faire dans la partie "issues", choisissez une tâche
 "A CO S1" = à commencer pour la soutenance 1
 "A FAIRE SF" = à faire pour la soutenance finale
 
-On verra par la suite qui push quoi dans master !
-
 ## Links
 
 - Site de prog : http://debug-pro.com/epita/prog/s3/
