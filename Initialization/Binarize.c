@@ -3,7 +3,7 @@
 #include "pixel_op.h"
 
 
-SDL_Surface* Binarize(SDL_Surface* img)
+void Binarize(SDL_Surface* img)
 {
     int w = img -> w;// the width of img
     int h = img -> h;// the height of img
@@ -34,7 +34,5 @@ SDL_Surface* Binarize(SDL_Surface* img)
             }
         }
     }
-
-    return img;
 }
 

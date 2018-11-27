@@ -6,9 +6,7 @@
 
 int main(int argc, char** argv)
 {
-    SDL_Surface* img;// the initial bmp
-    SDL_Surface* BW_img;// the white and black colored bmp
-    SDL_Surface* c_img;// the cut picture
+    SDL_Surface* img;// the bmp
     SDL_Window* screen;
 
     if(argc > 1)// at least must have one minimum argument
@@ -32,17 +30,17 @@ int main(int argc, char** argv)
             screen = display_img(img);
             wait_for_keypressed();
 
-            BW_img = Binarize(img);
-            SDL_BlitSurface(BW_img, NULL, SDL_GetWindowSurface(screen),0);
+            Binarize(img);
+            SDL_BlitSurface(img, NULL, SDL_GetWindowSurface(screen),0);
             SDL_UpdateWindowSurface(screen);
             wait_for_keypressed();
 
-            c_img = lines(BW_img);
-            SDL_BlitSurface(c_img, NULL, SDL_GetWindowSurface(screen),0);
+            lines(img);
+            SDL_BlitSurface(img, NULL, SDL_GetWindowSurface(screen),0);
             SDL_UpdateWindowSurface(screen);
             wait_for_keypressed();
 
-            SDL_FreeSurface(c_img);
+            SDL_FreeSurface(img);
 
             return 0;
         }
